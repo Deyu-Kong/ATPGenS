@@ -3,6 +3,7 @@
 """
 description：
 """
+from conf import default_exam_name
 
 
 class Title:
@@ -24,3 +25,6 @@ class Title:
         return f"出题学校: {self.school}\n学院: {self.college}\n" \
                f"科目: {self.subject}\n时间: {self.year}\n{self.instructions}"
 
+    def to_text(self):
+        return f"{self.school}\n{self.college}\n" \
+               f"{self.subject}{default_exam_name}\n{self.year}学年度\n{self.instructions}\n"

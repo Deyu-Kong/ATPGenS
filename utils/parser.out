@@ -1,0 +1,631 @@
+Created by PLY version 3.11 (http://www.dabeaz.com/ply)
+
+Unused terminals:
+
+    BLANK
+    LINE_FEED
+    SEMESTER
+
+Grammar
+
+Rule 0     S' -> PAPER
+Rule 1     PAPER -> PAPER_HEAD PAPER_BODY
+Rule 2     PAPER_HEAD -> SCHOOL COLLEGE SCHOOL_YEAR PAPER_NAME INSTRUCTIONS
+Rule 3     empty -> <empty>
+Rule 4     TEXTs -> TEXT TEXTs
+Rule 5     TEXTs -> TEXT
+Rule 6     INSTRUCTIONS -> KEY_INSTRUCTION INSTRUCTION
+Rule 7     INSTRUCTION -> QUESTION_NUMBER TEXTs INSTRUCTION
+Rule 8     INSTRUCTION -> QUESTION_NUMBER TEXTs
+Rule 9     PAPER_BODY -> SECTION_CHOOSE SECTION_BLANK_FILLING SECTION_JUDGMENT SECTION_SHORT_ANSWER
+Rule 10    SECTION_CHOOSE -> KEY_CHOOSE LIST_CHOOSE
+Rule 11    LIST_CHOOSE -> QUESTION_CHOOSE LIST_CHOOSE
+Rule 12    LIST_CHOOSE -> QUESTION_CHOOSE
+Rule 13    QUESTION_CHOOSE -> QUESTION_NUMBER QUESTION_BODY OPTIONS
+Rule 14    LEFT_BODY -> TEXTs
+Rule 15    LEFT_BODY -> empty
+Rule 16    RIGHT_BODY -> TEXTs
+Rule 17    RIGHT_BODY -> empty
+Rule 18    OPTIONS -> OPTION_SYMBOL TEXTs OPTIONS
+Rule 19    OPTIONS -> OPTION_SYMBOL TEXTs
+Rule 20    SECTION_BLANK_FILLING -> KEY_BLANK_FILLING LIST_BLANK_FILLING
+Rule 21    LIST_BLANK_FILLING -> QUESTION_BLANK_FILLING LIST_BLANK_FILLING
+Rule 22    LIST_BLANK_FILLING -> QUESTION_BLANK_FILLING
+Rule 23    QUESTION_BLANK_FILLING -> QUESTION_NUMBER LEFT_BODY BLANK_AREA RIGHT_BODY
+Rule 24    SECTION_JUDGMENT -> KEY_JUDGMENT LIST_JUDGMENT
+Rule 25    LIST_JUDGMENT -> QUESTION_JUDGMENT LIST_JUDGMENT
+Rule 26    LIST_JUDGMENT -> QUESTION_JUDGMENT
+Rule 27    QUESTION_JUDGMENT -> QUESTION_NUMBER QUESTION_BODY JUDGMENT_AREA
+Rule 28    QUESTION_BODY -> TEXTs
+Rule 29    SECTION_SHORT_ANSWER -> KEY_SHORT_ANSWER LIST_SHORT_ANSWER
+Rule 30    LIST_SHORT_ANSWER -> QUESTION_SHORT_ANSWER LIST_SHORT_ANSWER
+Rule 31    LIST_SHORT_ANSWER -> QUESTION_SHORT_ANSWER
+Rule 32    QUESTION_SHORT_ANSWER -> QUESTION_NUMBER TEXTs
+
+Terminals, with rules where they appear
+
+BLANK                : 
+BLANK_AREA           : 23
+COLLEGE              : 2
+JUDGMENT_AREA        : 27
+KEY_BLANK_FILLING    : 20
+KEY_CHOOSE           : 10
+KEY_INSTRUCTION      : 6
+KEY_JUDGMENT         : 24
+KEY_SHORT_ANSWER     : 29
+LINE_FEED            : 
+OPTION_SYMBOL        : 18 19
+PAPER_NAME           : 2
+QUESTION_NUMBER      : 7 8 13 23 27 32
+SCHOOL               : 2
+SCHOOL_YEAR          : 2
+SEMESTER             : 
+TEXT                 : 4 5
+error                : 
+
+Nonterminals, with rules where they appear
+
+INSTRUCTION          : 6 7
+INSTRUCTIONS         : 2
+LEFT_BODY            : 23
+LIST_BLANK_FILLING   : 20 21
+LIST_CHOOSE          : 10 11
+LIST_JUDGMENT        : 24 25
+LIST_SHORT_ANSWER    : 29 30
+OPTIONS              : 13 18
+PAPER                : 0
+PAPER_BODY           : 1
+PAPER_HEAD           : 1
+QUESTION_BLANK_FILLING : 21 22
+QUESTION_BODY        : 13 27
+QUESTION_CHOOSE      : 11 12
+QUESTION_JUDGMENT    : 25 26
+QUESTION_SHORT_ANSWER : 30 31
+RIGHT_BODY           : 23
+SECTION_BLANK_FILLING : 9
+SECTION_CHOOSE       : 9
+SECTION_JUDGMENT     : 9
+SECTION_SHORT_ANSWER : 9
+TEXTs                : 4 7 8 14 16 18 19 28 32
+empty                : 15 17
+
+Parsing method: LALR
+
+state 0
+
+    (0) S' -> . PAPER
+    (1) PAPER -> . PAPER_HEAD PAPER_BODY
+    (2) PAPER_HEAD -> . SCHOOL COLLEGE SCHOOL_YEAR PAPER_NAME INSTRUCTIONS
+
+    SCHOOL          shift and go to state 3
+
+    PAPER                          shift and go to state 1
+    PAPER_HEAD                     shift and go to state 2
+
+state 1
+
+    (0) S' -> PAPER .
+
+
+
+state 2
+
+    (1) PAPER -> PAPER_HEAD . PAPER_BODY
+    (9) PAPER_BODY -> . SECTION_CHOOSE SECTION_BLANK_FILLING SECTION_JUDGMENT SECTION_SHORT_ANSWER
+    (10) SECTION_CHOOSE -> . KEY_CHOOSE LIST_CHOOSE
+
+    KEY_CHOOSE      shift and go to state 6
+
+    PAPER_BODY                     shift and go to state 4
+    SECTION_CHOOSE                 shift and go to state 5
+
+state 3
+
+    (2) PAPER_HEAD -> SCHOOL . COLLEGE SCHOOL_YEAR PAPER_NAME INSTRUCTIONS
+
+    COLLEGE         shift and go to state 7
+
+
+state 4
+
+    (1) PAPER -> PAPER_HEAD PAPER_BODY .
+
+    $end            reduce using rule 1 (PAPER -> PAPER_HEAD PAPER_BODY .)
+
+
+state 5
+
+    (9) PAPER_BODY -> SECTION_CHOOSE . SECTION_BLANK_FILLING SECTION_JUDGMENT SECTION_SHORT_ANSWER
+    (20) SECTION_BLANK_FILLING -> . KEY_BLANK_FILLING LIST_BLANK_FILLING
+
+    KEY_BLANK_FILLING shift and go to state 9
+
+    SECTION_BLANK_FILLING          shift and go to state 8
+
+state 6
+
+    (10) SECTION_CHOOSE -> KEY_CHOOSE . LIST_CHOOSE
+    (11) LIST_CHOOSE -> . QUESTION_CHOOSE LIST_CHOOSE
+    (12) LIST_CHOOSE -> . QUESTION_CHOOSE
+    (13) QUESTION_CHOOSE -> . QUESTION_NUMBER QUESTION_BODY OPTIONS
+
+    QUESTION_NUMBER shift and go to state 12
+
+    LIST_CHOOSE                    shift and go to state 10
+    QUESTION_CHOOSE                shift and go to state 11
+
+state 7
+
+    (2) PAPER_HEAD -> SCHOOL COLLEGE . SCHOOL_YEAR PAPER_NAME INSTRUCTIONS
+
+    SCHOOL_YEAR     shift and go to state 13
+
+
+state 8
+
+    (9) PAPER_BODY -> SECTION_CHOOSE SECTION_BLANK_FILLING . SECTION_JUDGMENT SECTION_SHORT_ANSWER
+    (24) SECTION_JUDGMENT -> . KEY_JUDGMENT LIST_JUDGMENT
+
+    KEY_JUDGMENT    shift and go to state 15
+
+    SECTION_JUDGMENT               shift and go to state 14
+
+state 9
+
+    (20) SECTION_BLANK_FILLING -> KEY_BLANK_FILLING . LIST_BLANK_FILLING
+    (21) LIST_BLANK_FILLING -> . QUESTION_BLANK_FILLING LIST_BLANK_FILLING
+    (22) LIST_BLANK_FILLING -> . QUESTION_BLANK_FILLING
+    (23) QUESTION_BLANK_FILLING -> . QUESTION_NUMBER LEFT_BODY BLANK_AREA RIGHT_BODY
+
+    QUESTION_NUMBER shift and go to state 18
+
+    LIST_BLANK_FILLING             shift and go to state 16
+    QUESTION_BLANK_FILLING         shift and go to state 17
+
+state 10
+
+    (10) SECTION_CHOOSE -> KEY_CHOOSE LIST_CHOOSE .
+
+    KEY_BLANK_FILLING reduce using rule 10 (SECTION_CHOOSE -> KEY_CHOOSE LIST_CHOOSE .)
+
+
+state 11
+
+    (11) LIST_CHOOSE -> QUESTION_CHOOSE . LIST_CHOOSE
+    (12) LIST_CHOOSE -> QUESTION_CHOOSE .
+    (11) LIST_CHOOSE -> . QUESTION_CHOOSE LIST_CHOOSE
+    (12) LIST_CHOOSE -> . QUESTION_CHOOSE
+    (13) QUESTION_CHOOSE -> . QUESTION_NUMBER QUESTION_BODY OPTIONS
+
+    KEY_BLANK_FILLING reduce using rule 12 (LIST_CHOOSE -> QUESTION_CHOOSE .)
+    QUESTION_NUMBER shift and go to state 12
+
+    QUESTION_CHOOSE                shift and go to state 11
+    LIST_CHOOSE                    shift and go to state 19
+
+state 12
+
+    (13) QUESTION_CHOOSE -> QUESTION_NUMBER . QUESTION_BODY OPTIONS
+    (28) QUESTION_BODY -> . TEXTs
+    (4) TEXTs -> . TEXT TEXTs
+    (5) TEXTs -> . TEXT
+
+    TEXT            shift and go to state 22
+
+    QUESTION_BODY                  shift and go to state 20
+    TEXTs                          shift and go to state 21
+
+state 13
+
+    (2) PAPER_HEAD -> SCHOOL COLLEGE SCHOOL_YEAR . PAPER_NAME INSTRUCTIONS
+
+    PAPER_NAME      shift and go to state 23
+
+
+state 14
+
+    (9) PAPER_BODY -> SECTION_CHOOSE SECTION_BLANK_FILLING SECTION_JUDGMENT . SECTION_SHORT_ANSWER
+    (29) SECTION_SHORT_ANSWER -> . KEY_SHORT_ANSWER LIST_SHORT_ANSWER
+
+    KEY_SHORT_ANSWER shift and go to state 25
+
+    SECTION_SHORT_ANSWER           shift and go to state 24
+
+state 15
+
+    (24) SECTION_JUDGMENT -> KEY_JUDGMENT . LIST_JUDGMENT
+    (25) LIST_JUDGMENT -> . QUESTION_JUDGMENT LIST_JUDGMENT
+    (26) LIST_JUDGMENT -> . QUESTION_JUDGMENT
+    (27) QUESTION_JUDGMENT -> . QUESTION_NUMBER QUESTION_BODY JUDGMENT_AREA
+
+    QUESTION_NUMBER shift and go to state 28
+
+    LIST_JUDGMENT                  shift and go to state 26
+    QUESTION_JUDGMENT              shift and go to state 27
+
+state 16
+
+    (20) SECTION_BLANK_FILLING -> KEY_BLANK_FILLING LIST_BLANK_FILLING .
+
+    KEY_JUDGMENT    reduce using rule 20 (SECTION_BLANK_FILLING -> KEY_BLANK_FILLING LIST_BLANK_FILLING .)
+
+
+state 17
+
+    (21) LIST_BLANK_FILLING -> QUESTION_BLANK_FILLING . LIST_BLANK_FILLING
+    (22) LIST_BLANK_FILLING -> QUESTION_BLANK_FILLING .
+    (21) LIST_BLANK_FILLING -> . QUESTION_BLANK_FILLING LIST_BLANK_FILLING
+    (22) LIST_BLANK_FILLING -> . QUESTION_BLANK_FILLING
+    (23) QUESTION_BLANK_FILLING -> . QUESTION_NUMBER LEFT_BODY BLANK_AREA RIGHT_BODY
+
+    KEY_JUDGMENT    reduce using rule 22 (LIST_BLANK_FILLING -> QUESTION_BLANK_FILLING .)
+    QUESTION_NUMBER shift and go to state 18
+
+    QUESTION_BLANK_FILLING         shift and go to state 17
+    LIST_BLANK_FILLING             shift and go to state 29
+
+state 18
+
+    (23) QUESTION_BLANK_FILLING -> QUESTION_NUMBER . LEFT_BODY BLANK_AREA RIGHT_BODY
+    (14) LEFT_BODY -> . TEXTs
+    (15) LEFT_BODY -> . empty
+    (4) TEXTs -> . TEXT TEXTs
+    (5) TEXTs -> . TEXT
+    (3) empty -> .
+
+    TEXT            shift and go to state 22
+    BLANK_AREA      reduce using rule 3 (empty -> .)
+
+    LEFT_BODY                      shift and go to state 30
+    TEXTs                          shift and go to state 31
+    empty                          shift and go to state 32
+
+state 19
+
+    (11) LIST_CHOOSE -> QUESTION_CHOOSE LIST_CHOOSE .
+
+    KEY_BLANK_FILLING reduce using rule 11 (LIST_CHOOSE -> QUESTION_CHOOSE LIST_CHOOSE .)
+
+
+state 20
+
+    (13) QUESTION_CHOOSE -> QUESTION_NUMBER QUESTION_BODY . OPTIONS
+    (18) OPTIONS -> . OPTION_SYMBOL TEXTs OPTIONS
+    (19) OPTIONS -> . OPTION_SYMBOL TEXTs
+
+    OPTION_SYMBOL   shift and go to state 34
+
+    OPTIONS                        shift and go to state 33
+
+state 21
+
+    (28) QUESTION_BODY -> TEXTs .
+
+    OPTION_SYMBOL   reduce using rule 28 (QUESTION_BODY -> TEXTs .)
+    JUDGMENT_AREA   reduce using rule 28 (QUESTION_BODY -> TEXTs .)
+
+
+state 22
+
+    (4) TEXTs -> TEXT . TEXTs
+    (5) TEXTs -> TEXT .
+    (4) TEXTs -> . TEXT TEXTs
+    (5) TEXTs -> . TEXT
+
+    OPTION_SYMBOL   reduce using rule 5 (TEXTs -> TEXT .)
+    BLANK_AREA      reduce using rule 5 (TEXTs -> TEXT .)
+    JUDGMENT_AREA   reduce using rule 5 (TEXTs -> TEXT .)
+    QUESTION_NUMBER reduce using rule 5 (TEXTs -> TEXT .)
+    KEY_BLANK_FILLING reduce using rule 5 (TEXTs -> TEXT .)
+    $end            reduce using rule 5 (TEXTs -> TEXT .)
+    KEY_JUDGMENT    reduce using rule 5 (TEXTs -> TEXT .)
+    KEY_CHOOSE      reduce using rule 5 (TEXTs -> TEXT .)
+    TEXT            shift and go to state 22
+
+    TEXTs                          shift and go to state 35
+
+state 23
+
+    (2) PAPER_HEAD -> SCHOOL COLLEGE SCHOOL_YEAR PAPER_NAME . INSTRUCTIONS
+    (6) INSTRUCTIONS -> . KEY_INSTRUCTION INSTRUCTION
+
+    KEY_INSTRUCTION shift and go to state 37
+
+    INSTRUCTIONS                   shift and go to state 36
+
+state 24
+
+    (9) PAPER_BODY -> SECTION_CHOOSE SECTION_BLANK_FILLING SECTION_JUDGMENT SECTION_SHORT_ANSWER .
+
+    $end            reduce using rule 9 (PAPER_BODY -> SECTION_CHOOSE SECTION_BLANK_FILLING SECTION_JUDGMENT SECTION_SHORT_ANSWER .)
+
+
+state 25
+
+    (29) SECTION_SHORT_ANSWER -> KEY_SHORT_ANSWER . LIST_SHORT_ANSWER
+    (30) LIST_SHORT_ANSWER -> . QUESTION_SHORT_ANSWER LIST_SHORT_ANSWER
+    (31) LIST_SHORT_ANSWER -> . QUESTION_SHORT_ANSWER
+    (32) QUESTION_SHORT_ANSWER -> . QUESTION_NUMBER TEXTs
+
+    QUESTION_NUMBER shift and go to state 40
+
+    LIST_SHORT_ANSWER              shift and go to state 38
+    QUESTION_SHORT_ANSWER          shift and go to state 39
+
+state 26
+
+    (24) SECTION_JUDGMENT -> KEY_JUDGMENT LIST_JUDGMENT .
+
+    KEY_SHORT_ANSWER reduce using rule 24 (SECTION_JUDGMENT -> KEY_JUDGMENT LIST_JUDGMENT .)
+
+
+state 27
+
+    (25) LIST_JUDGMENT -> QUESTION_JUDGMENT . LIST_JUDGMENT
+    (26) LIST_JUDGMENT -> QUESTION_JUDGMENT .
+    (25) LIST_JUDGMENT -> . QUESTION_JUDGMENT LIST_JUDGMENT
+    (26) LIST_JUDGMENT -> . QUESTION_JUDGMENT
+    (27) QUESTION_JUDGMENT -> . QUESTION_NUMBER QUESTION_BODY JUDGMENT_AREA
+
+    KEY_SHORT_ANSWER reduce using rule 26 (LIST_JUDGMENT -> QUESTION_JUDGMENT .)
+    QUESTION_NUMBER shift and go to state 28
+
+    QUESTION_JUDGMENT              shift and go to state 27
+    LIST_JUDGMENT                  shift and go to state 41
+
+state 28
+
+    (27) QUESTION_JUDGMENT -> QUESTION_NUMBER . QUESTION_BODY JUDGMENT_AREA
+    (28) QUESTION_BODY -> . TEXTs
+    (4) TEXTs -> . TEXT TEXTs
+    (5) TEXTs -> . TEXT
+
+    TEXT            shift and go to state 22
+
+    QUESTION_BODY                  shift and go to state 42
+    TEXTs                          shift and go to state 21
+
+state 29
+
+    (21) LIST_BLANK_FILLING -> QUESTION_BLANK_FILLING LIST_BLANK_FILLING .
+
+    KEY_JUDGMENT    reduce using rule 21 (LIST_BLANK_FILLING -> QUESTION_BLANK_FILLING LIST_BLANK_FILLING .)
+
+
+state 30
+
+    (23) QUESTION_BLANK_FILLING -> QUESTION_NUMBER LEFT_BODY . BLANK_AREA RIGHT_BODY
+
+    BLANK_AREA      shift and go to state 43
+
+
+state 31
+
+    (14) LEFT_BODY -> TEXTs .
+
+    BLANK_AREA      reduce using rule 14 (LEFT_BODY -> TEXTs .)
+
+
+state 32
+
+    (15) LEFT_BODY -> empty .
+
+    BLANK_AREA      reduce using rule 15 (LEFT_BODY -> empty .)
+
+
+state 33
+
+    (13) QUESTION_CHOOSE -> QUESTION_NUMBER QUESTION_BODY OPTIONS .
+
+    QUESTION_NUMBER reduce using rule 13 (QUESTION_CHOOSE -> QUESTION_NUMBER QUESTION_BODY OPTIONS .)
+    KEY_BLANK_FILLING reduce using rule 13 (QUESTION_CHOOSE -> QUESTION_NUMBER QUESTION_BODY OPTIONS .)
+
+
+state 34
+
+    (18) OPTIONS -> OPTION_SYMBOL . TEXTs OPTIONS
+    (19) OPTIONS -> OPTION_SYMBOL . TEXTs
+    (4) TEXTs -> . TEXT TEXTs
+    (5) TEXTs -> . TEXT
+
+    TEXT            shift and go to state 22
+
+    TEXTs                          shift and go to state 44
+
+state 35
+
+    (4) TEXTs -> TEXT TEXTs .
+
+    OPTION_SYMBOL   reduce using rule 4 (TEXTs -> TEXT TEXTs .)
+    BLANK_AREA      reduce using rule 4 (TEXTs -> TEXT TEXTs .)
+    JUDGMENT_AREA   reduce using rule 4 (TEXTs -> TEXT TEXTs .)
+    QUESTION_NUMBER reduce using rule 4 (TEXTs -> TEXT TEXTs .)
+    KEY_BLANK_FILLING reduce using rule 4 (TEXTs -> TEXT TEXTs .)
+    $end            reduce using rule 4 (TEXTs -> TEXT TEXTs .)
+    KEY_JUDGMENT    reduce using rule 4 (TEXTs -> TEXT TEXTs .)
+    KEY_CHOOSE      reduce using rule 4 (TEXTs -> TEXT TEXTs .)
+
+
+state 36
+
+    (2) PAPER_HEAD -> SCHOOL COLLEGE SCHOOL_YEAR PAPER_NAME INSTRUCTIONS .
+
+    KEY_CHOOSE      reduce using rule 2 (PAPER_HEAD -> SCHOOL COLLEGE SCHOOL_YEAR PAPER_NAME INSTRUCTIONS .)
+
+
+state 37
+
+    (6) INSTRUCTIONS -> KEY_INSTRUCTION . INSTRUCTION
+    (7) INSTRUCTION -> . QUESTION_NUMBER TEXTs INSTRUCTION
+    (8) INSTRUCTION -> . QUESTION_NUMBER TEXTs
+
+    QUESTION_NUMBER shift and go to state 46
+
+    INSTRUCTION                    shift and go to state 45
+
+state 38
+
+    (29) SECTION_SHORT_ANSWER -> KEY_SHORT_ANSWER LIST_SHORT_ANSWER .
+
+    $end            reduce using rule 29 (SECTION_SHORT_ANSWER -> KEY_SHORT_ANSWER LIST_SHORT_ANSWER .)
+
+
+state 39
+
+    (30) LIST_SHORT_ANSWER -> QUESTION_SHORT_ANSWER . LIST_SHORT_ANSWER
+    (31) LIST_SHORT_ANSWER -> QUESTION_SHORT_ANSWER .
+    (30) LIST_SHORT_ANSWER -> . QUESTION_SHORT_ANSWER LIST_SHORT_ANSWER
+    (31) LIST_SHORT_ANSWER -> . QUESTION_SHORT_ANSWER
+    (32) QUESTION_SHORT_ANSWER -> . QUESTION_NUMBER TEXTs
+
+    $end            reduce using rule 31 (LIST_SHORT_ANSWER -> QUESTION_SHORT_ANSWER .)
+    QUESTION_NUMBER shift and go to state 40
+
+    QUESTION_SHORT_ANSWER          shift and go to state 39
+    LIST_SHORT_ANSWER              shift and go to state 47
+
+state 40
+
+    (32) QUESTION_SHORT_ANSWER -> QUESTION_NUMBER . TEXTs
+    (4) TEXTs -> . TEXT TEXTs
+    (5) TEXTs -> . TEXT
+
+    TEXT            shift and go to state 22
+
+    TEXTs                          shift and go to state 48
+
+state 41
+
+    (25) LIST_JUDGMENT -> QUESTION_JUDGMENT LIST_JUDGMENT .
+
+    KEY_SHORT_ANSWER reduce using rule 25 (LIST_JUDGMENT -> QUESTION_JUDGMENT LIST_JUDGMENT .)
+
+
+state 42
+
+    (27) QUESTION_JUDGMENT -> QUESTION_NUMBER QUESTION_BODY . JUDGMENT_AREA
+
+    JUDGMENT_AREA   shift and go to state 49
+
+
+state 43
+
+    (23) QUESTION_BLANK_FILLING -> QUESTION_NUMBER LEFT_BODY BLANK_AREA . RIGHT_BODY
+    (16) RIGHT_BODY -> . TEXTs
+    (17) RIGHT_BODY -> . empty
+    (4) TEXTs -> . TEXT TEXTs
+    (5) TEXTs -> . TEXT
+    (3) empty -> .
+
+    TEXT            shift and go to state 22
+    QUESTION_NUMBER reduce using rule 3 (empty -> .)
+    KEY_JUDGMENT    reduce using rule 3 (empty -> .)
+
+    RIGHT_BODY                     shift and go to state 50
+    TEXTs                          shift and go to state 51
+    empty                          shift and go to state 52
+
+state 44
+
+    (18) OPTIONS -> OPTION_SYMBOL TEXTs . OPTIONS
+    (19) OPTIONS -> OPTION_SYMBOL TEXTs .
+    (18) OPTIONS -> . OPTION_SYMBOL TEXTs OPTIONS
+    (19) OPTIONS -> . OPTION_SYMBOL TEXTs
+
+    QUESTION_NUMBER reduce using rule 19 (OPTIONS -> OPTION_SYMBOL TEXTs .)
+    KEY_BLANK_FILLING reduce using rule 19 (OPTIONS -> OPTION_SYMBOL TEXTs .)
+    OPTION_SYMBOL   shift and go to state 34
+
+    OPTIONS                        shift and go to state 53
+
+state 45
+
+    (6) INSTRUCTIONS -> KEY_INSTRUCTION INSTRUCTION .
+
+    KEY_CHOOSE      reduce using rule 6 (INSTRUCTIONS -> KEY_INSTRUCTION INSTRUCTION .)
+
+
+state 46
+
+    (7) INSTRUCTION -> QUESTION_NUMBER . TEXTs INSTRUCTION
+    (8) INSTRUCTION -> QUESTION_NUMBER . TEXTs
+    (4) TEXTs -> . TEXT TEXTs
+    (5) TEXTs -> . TEXT
+
+    TEXT            shift and go to state 22
+
+    TEXTs                          shift and go to state 54
+
+state 47
+
+    (30) LIST_SHORT_ANSWER -> QUESTION_SHORT_ANSWER LIST_SHORT_ANSWER .
+
+    $end            reduce using rule 30 (LIST_SHORT_ANSWER -> QUESTION_SHORT_ANSWER LIST_SHORT_ANSWER .)
+
+
+state 48
+
+    (32) QUESTION_SHORT_ANSWER -> QUESTION_NUMBER TEXTs .
+
+    QUESTION_NUMBER reduce using rule 32 (QUESTION_SHORT_ANSWER -> QUESTION_NUMBER TEXTs .)
+    $end            reduce using rule 32 (QUESTION_SHORT_ANSWER -> QUESTION_NUMBER TEXTs .)
+
+
+state 49
+
+    (27) QUESTION_JUDGMENT -> QUESTION_NUMBER QUESTION_BODY JUDGMENT_AREA .
+
+    QUESTION_NUMBER reduce using rule 27 (QUESTION_JUDGMENT -> QUESTION_NUMBER QUESTION_BODY JUDGMENT_AREA .)
+    KEY_SHORT_ANSWER reduce using rule 27 (QUESTION_JUDGMENT -> QUESTION_NUMBER QUESTION_BODY JUDGMENT_AREA .)
+
+
+state 50
+
+    (23) QUESTION_BLANK_FILLING -> QUESTION_NUMBER LEFT_BODY BLANK_AREA RIGHT_BODY .
+
+    QUESTION_NUMBER reduce using rule 23 (QUESTION_BLANK_FILLING -> QUESTION_NUMBER LEFT_BODY BLANK_AREA RIGHT_BODY .)
+    KEY_JUDGMENT    reduce using rule 23 (QUESTION_BLANK_FILLING -> QUESTION_NUMBER LEFT_BODY BLANK_AREA RIGHT_BODY .)
+
+
+state 51
+
+    (16) RIGHT_BODY -> TEXTs .
+
+    QUESTION_NUMBER reduce using rule 16 (RIGHT_BODY -> TEXTs .)
+    KEY_JUDGMENT    reduce using rule 16 (RIGHT_BODY -> TEXTs .)
+
+
+state 52
+
+    (17) RIGHT_BODY -> empty .
+
+    QUESTION_NUMBER reduce using rule 17 (RIGHT_BODY -> empty .)
+    KEY_JUDGMENT    reduce using rule 17 (RIGHT_BODY -> empty .)
+
+
+state 53
+
+    (18) OPTIONS -> OPTION_SYMBOL TEXTs OPTIONS .
+
+    QUESTION_NUMBER reduce using rule 18 (OPTIONS -> OPTION_SYMBOL TEXTs OPTIONS .)
+    KEY_BLANK_FILLING reduce using rule 18 (OPTIONS -> OPTION_SYMBOL TEXTs OPTIONS .)
+
+
+state 54
+
+    (7) INSTRUCTION -> QUESTION_NUMBER TEXTs . INSTRUCTION
+    (8) INSTRUCTION -> QUESTION_NUMBER TEXTs .
+    (7) INSTRUCTION -> . QUESTION_NUMBER TEXTs INSTRUCTION
+    (8) INSTRUCTION -> . QUESTION_NUMBER TEXTs
+
+    KEY_CHOOSE      reduce using rule 8 (INSTRUCTION -> QUESTION_NUMBER TEXTs .)
+    QUESTION_NUMBER shift and go to state 46
+
+    INSTRUCTION                    shift and go to state 55
+
+state 55
+
+    (7) INSTRUCTION -> QUESTION_NUMBER TEXTs INSTRUCTION .
+
+    KEY_CHOOSE      reduce using rule 7 (INSTRUCTION -> QUESTION_NUMBER TEXTs INSTRUCTION .)
+
